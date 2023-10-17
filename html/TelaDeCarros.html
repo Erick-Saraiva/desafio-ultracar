@@ -12,7 +12,9 @@
     </div>
 
     <div id="carros">
-        
+        <label for="selectCarros">Selecione um carro:</label><br>
+        <select id="selectCarros"></select>
+        <button type="button" onclick="analisarCarro()">Analisar Carro</button>
     </div>
 
     <script>
@@ -20,12 +22,13 @@
             fetch('http://localhost:8080/clientes/buscar-veiculos/' + emailCliente)
                 .then(response => response.json())
                 .then(data => {
-                    var carrosDiv = document.getElementById('carros');
-                    carrosDiv.innerHTML = ""; 
+                    var selectCarros = document.getElementById('selectCarros');
+                    selectCarros.innerHTML = ""; 
                     data.forEach(carro => {
-                        var paragraph = document.createElement('p');
-                        paragraph.textContent = `ID do carro: ${carro.id}, Modelo: ${carro.modelo}, Marca: ${carro.marca}`;
-                        carrosDiv.appendChild(paragraph);
+                        var option = document.createElement('option');
+                        option.value = carro.id; 
+                        option.text = `${carro.modelo} - ${carro.marca}`; 
+                        selectCarros.appendChild(option);
                     });
                 });
         }
@@ -33,7 +36,16 @@
         function verificarEmail() {
             var emailCliente = document.getElementById('email').value;
             
+
+            
             buscarCarros(emailCliente);
+        }
+
+        function analisarCarro() {
+            var selectCarros = document.getElementById('selectCarros');
+            var carroSelecionado = selectCarros.options[selectCarros.selectedIndex].text;
+            alert("Carro selecionado para análise: " + carroSelecionado);
+            
         }
 
         
