@@ -1,0 +1,16 @@
+
+INSERT INTO Cliente (nome, email, telefone) VALUES ('João', 'joao@example.com', '123456789');
+INSERT INTO Cliente (nome, email, telefone) VALUES ('Maria', 'maria@example.com', '987654321');
+
+INSERT INTO Veiculo (id_cliente, modelo, marca, ano) VALUES (1, 'Fusca', 'Volkswagen', 1970);
+INSERT INTO Veiculo (id_cliente, modelo, marca, ano) VALUES (1, 'Civic', 'Honda', 2010);
+
+INSERT INTO Servico (nome, descricao) VALUES ('Troca de Óleo', 'Troca de óleo do motor e filtro.');
+INSERT INTO Servico (nome, descricao) VALUES ('Alinhamento e Balanceamento', 'Alinhamento das rodas e balanceamento dos pneus.');
+
+INSERT INTO Peca (nome, descricao, preco) VALUES ('Filtro de Óleo', 'Filtro de óleo para troca.', 50.00);
+INSERT INTO Peca (nome, descricao, preco) VALUES ('Pneu', 'Pneu para reposição.', 300.00);
+
+INSERT INTO Observacao (id_veiculo, observacao) VALUES (1, 'Arranhões no lado direito.');
+INSERT INTO Observacao (id_veiculo, observacao) VALUES (2, 'Amassado na parte traseira.');
+
