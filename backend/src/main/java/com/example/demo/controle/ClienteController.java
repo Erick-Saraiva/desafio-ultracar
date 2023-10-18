@@ -1,14 +1,17 @@
 package com.example.demo.controle;
 
 import com.example.demo.dominio.Cliente;
+import com.example.demo.dominio.OrdemDeServico;
 import com.example.demo.dominio.Veiculo;
 import com.example.demo.repositorio.ClienteRepository;
+import com.example.demo.repositorio.OrdemDeServicoRepository;
 import com.example.demo.repositorio.VeiculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @CrossOrigin
 @RestController
@@ -21,6 +24,9 @@ public class ClienteController {
     @Autowired
     private VeiculoRepository veiculoRepository;
 
+    @Autowired
+    private OrdemDeServicoRepository ordemDeServicoRepository;
+
     @GetMapping("/todos")
     public ResponseEntity<List<Cliente>> getAll() {
         List<Cliente> clientes = clienteRepository.findAll();
@@ -28,18 +34,6 @@ public class ClienteController {
                 ? ResponseEntity.status(204).build()
                 : ResponseEntity.status(200).body(clientes);
 
-    }
-
-    @GetMapping("/verificar-cliente/{email}")
-    public ResponseEntity<String> verificarCliente(@PathVariable String email) {
-        Boolean emailCliente = clienteRepository.existsByEmail(email);
-        if (emailCliente) {
-            return ResponseEntity.status(200)
-                    .body("Email cadastrado, seguindo para a próxima página.");
-        } else {
-            return ResponseEntity.status(404)
-                    .body("Email não cadastrado!");
-        }
     }
 
     @GetMapping("/buscar-veiculos/{email}")
@@ -56,4 +50,16 @@ public class ClienteController {
         }
     }
 
+    @GetMapping("/gerar-relatorio/{idVeiculo}")
+    public ResponseEntity<String> gerarRelatorio(@PathVariable Long idVeiculo) {
+        List<Veiculo> veiculosDoCliente = veiculoRepository.findAllById(idVeiculo);
+
+        if (!veiculosDoCliente.isEmpty()) {
+            for (Veiculo veiculo: veiculosDoCliente) {
+                List<OrdemDeServico> servicos = ordemDeServicoRepository.findAllByVeiculo(veiculo);
+                return ResponseEntity.status(200).body(servicos.toString());
+            }
+        }
+        return ResponseEntity.status(404).body("Não temos nenhum relatório ou problema nesse carro.");
+    }
 }

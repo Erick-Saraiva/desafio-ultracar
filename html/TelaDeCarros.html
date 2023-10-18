@@ -2,6 +2,21 @@
 <html>
 <head>
     <title>Verificar Cliente e Exibir Carros</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+        }
+        #relatorio {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+            background-color: #f9f9f9;
+        }
+    </style>
 </head>
 <body>
     <h1>Verificar Cliente e Exibir Carros</h1>
@@ -15,6 +30,10 @@
         <label for="selectCarros">Selecione um carro:</label><br>
         <select id="selectCarros"></select>
         <button type="button" onclick="analisarCarro()">Analisar Carro</button>
+    </div>
+
+    <div id="relatorio">
+        
     </div>
 
     <script>
@@ -35,20 +54,27 @@
 
         function verificarEmail() {
             var emailCliente = document.getElementById('email').value;
-            
-
-            
             buscarCarros(emailCliente);
         }
 
         function analisarCarro() {
             var selectCarros = document.getElementById('selectCarros');
-            var carroSelecionado = selectCarros.options[selectCarros.selectedIndex].text;
-            alert("Carro selecionado para análise: " + carroSelecionado);
-            
+            var idCarro = selectCarros.options[selectCarros.selectedIndex].value;
+
+            fetch('http://localhost:8080/clientes/gerar-relatorio/' + idCarro)
+                .then(response => response.text())
+                .then(data => {
+                    var relatorio = "Relatório gerado com base nas informações do carro selecionado: " + data;
+                    var relatorioElement = document.getElementById('relatorio');
+                    if (relatorioElement) {
+                        relatorioElement.innerText = relatorio;
+                    }
+                })
+                .catch(error => {
+                    alert("Erro ao gerar relatório: " + error);
+                });
         }
 
-        
         verificarEmail();
     </script>
 </body>

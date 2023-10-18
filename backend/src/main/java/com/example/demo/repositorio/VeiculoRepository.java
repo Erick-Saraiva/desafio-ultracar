@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface VeiculoRepository extends JpaRepository<Veiculo, Long> {
     List<Veiculo> findAllByEmail(String email);
+
+    List<Veiculo> findAllById(Long idVeiculo);
 }

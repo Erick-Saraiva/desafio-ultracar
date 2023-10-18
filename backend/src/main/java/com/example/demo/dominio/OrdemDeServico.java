@@ -100,14 +100,15 @@ public class OrdemDeServico {
 
     @Override
     public String toString() {
-        return "OrdemDeServico{" +
-                "id=" + id +
-                ", veiculo=" + veiculo +
-                ", servico=" + servico +
-                ", peca=" + peca +
-                ", observacao='" + observacao + '\'' +
-                ", dataCriacao=" + dataCriacao +
-                ", aprovado=" + aprovado +
-                '}';
+        return "\nOrdemDeServico: " + '\n' +
+                "Id: " + id + '\n' +
+                "Nome do serviço: " + servico.getNome() + '\n' +
+                "Descrição do serviço: " + servico.getDescricao() + '\n' +
+                "Nome da Peça: " + peca.getNome() + '\n' +
+                "Descrição da Peça: " + peca.getDescricao() + '\n' +
+                "Preço da Peça: " + peca.getPreco() + '\n' +
+                "Observação: " + observacao + '\n' +
+                "Data do serviço: " + dataCriacao + '\n' +
+                "Foi aprovado: " + aprovado + '\n';
     }
 }

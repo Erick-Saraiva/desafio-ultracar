@@ -83,13 +83,13 @@ public class Veiculo {
 
     @Override
     public String toString() {
-        return "Veiculo{" +
-                "id=" + id +
-                ", cliente=" + cliente +
-                ", emailCliente='" + email + '\'' +
-                ", modelo='" + modelo + '\'' +
-                ", marca='" + marca + '\'' +
-                ", ano=" + ano +
-                '}';
+        return "Veiculo: \n" +
+                "Id: " + id + '\n' +
+                "Nome do cliente: " + cliente.getNome() + '\n' +
+                "Telefone do cliente: " + cliente.getTelefone() + '\n' +
+                "Email do cliente: " + email + '\n' +
+                "Modelo do carro: " + modelo + '\n' +
+                "Marca do carro: " + marca + '\n' +
+                "Ano: " + ano + '\n';
     }
 }
