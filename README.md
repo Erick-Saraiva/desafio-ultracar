@@ -5,10 +5,14 @@
 Minha estratégia foi começar pela conexão do meu backend com meu banco de dados PostgreSQL, então criei primeiro meu database no postgreSQL e depois criei minhas entidades no Java para que assim que inicializar a aplicação do backend ele crie e já insira dados pré definidos que eu deixei pronto.
 
 OBSERVAÇÕES:
-*Terá que ser criado um banco de dados no postgreSQL com o nome 'bd_ultracar'.
-*No arquivo application.properties no backend na pasta resources você terá que trocar o:
-spring.datasource.username='seu_usuario_do_postgres'
-spring.datasource.password='sua_senha_do_postgres'
+
+# Terá que ser criado um banco de dados no postgreSQL com o nome 'bd_ultracar'.
+
+No arquivo application.properties no backend na pasta resources você terá que trocar o:
+
+# spring.datasource.username='seu_usuario_do_postgres'
+
+# spring.datasource.password='sua_senha_do_postgres'
 
 Feito essas trocas, assim que inicializar o backend será automaticamente criado o banco com tabelas e dados já inseridos.
 
